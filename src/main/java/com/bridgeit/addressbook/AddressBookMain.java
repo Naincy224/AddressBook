@@ -29,7 +29,23 @@ public class AddressBookMain {
 				addressBook.setContactList(contactList);
 				break;
 			case 2:
-				//ToDo
+				System.out.println("Enter first name to search and edit contact in the address book:");
+				name = sc.next();
+				boolean flag = false;
+				if (addressBook.getContactList() != null) {
+
+					for (Contact cont : addressBook.getContactList()) {
+						if (cont.getFirstName().equalsIgnoreCase(name)) {
+							flag = true;
+							System.out.println(cont.getFirstName());
+							addressBookMain.modifyContact(cont);
+							System.out.println(cont.getFirstName());
+							System.out.println(cont.getLastNames());
+						}
+					}
+				}
+				if (!flag)
+					System.out.println("The contact with name " + name + " is not present in address book");
 				break;
 			case 3:
 				//ToDo
@@ -81,6 +97,31 @@ public class AddressBookMain {
 		contact.setPhoneNumber(phNumber);
 		contact.setEmail(email);
 		return contact;
+	}
+	
+	public void modifyContact(Contact contact) {
+
+		Scanner sc = new Scanner(System.in);
+		String yesOrNo;
+		System.out.println("Do you want to edit first name:Yes/No:");
+		yesOrNo = sc.next();
+
+		if (yesOrNo.equalsIgnoreCase("yes")) {
+			System.out.println("Update first name:");
+			String firstName = sc.next();
+			contact.setFirstName(firstName);
+		}
+
+		System.out.println("Do you want to edit last name:Yes/No:");
+		yesOrNo = sc.next();
+
+		if (yesOrNo.equalsIgnoreCase("yes")) {
+			System.out.println("Update last name:");
+			String lastName = sc.next();
+			contact.setLastNames(lastName);
+			
+		}
+
 	}
 
 }
