@@ -48,7 +48,24 @@ public class AddressBookMain {
 					System.out.println("The contact with name " + name + " is not present in address book");
 				break;
 			case 3:
-				//ToDo
+				System.out.println("Enter first name to delete contact from the address book:");
+				name = sc.next();
+				Contact contac = null;
+				boolean deleated = false;
+				if (addressBook.getContactList() != null) {
+					for (Contact cont : addressBook.getContactList()) {
+						if (cont.getFirstName().equalsIgnoreCase(name)) {
+							contac = cont;
+							break;
+						}
+					}
+					deleated = addressBook.getContactList().remove(contac);
+				}
+				if (deleated) {
+					System.out.println("The contact is deleted sucessfully from address book");
+				} else {
+					System.out.println("The contact with name " + name + " is not present in address book");
+				}
 				break;
 			case 4:
 				sc.close();
