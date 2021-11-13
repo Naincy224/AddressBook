@@ -1,5 +1,7 @@
 package com.bridgeit.addressbook;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class AddressBookMain {
@@ -7,13 +9,41 @@ public class AddressBookMain {
 	public static void main(String[] args) {
 		printWelcomeMessage();
 		AddressBookMain addressBookMain = new AddressBookMain();
-		Contact contact = addressBookMain.createContact();
-		System.out.println(contact);
+		AddressBook addressBook = new AddressBook();
+		List<Contact> contactList = null;
+		String name;
+		Scanner sc = new Scanner(System.in);
+		boolean runAddressBook = true;
+		
+		
+		while (runAddressBook) {
+			System.out.println(
+					"\n Enter 1 to add contact to address book\n Enter 2 to search by name and edit contact in address book\n Enter 3 to remove contact from the address book\n Enter 4 to shut down address book\n ");
+			int option = sc.nextInt();
+
+			switch (option) {
+			case 1:
+				Contact contact = addressBookMain.createContact();
+				contactList = new ArrayList<Contact>();
+				contactList.add(contact);
+				addressBook.setContactList(contactList);
+				break;
+			case 2:
+				//ToDo
+				break;
+			case 3:
+				//ToDo
+				break;
+			case 4:
+				sc.close();
+				System.out.println("Shutting down address book");
+				runAddressBook = false;
+			}
+		}
+
 	}
 		
 		
-	
-
 	public static void printWelcomeMessage() {
 
 		System.out.println("Welcome to AddressBook system Program");
